@@ -67,6 +67,20 @@ INSTALLED_APPS = BASE_APPS + THIRD_APPS + LOCAL_APPS
 #     'rest_framework.authtoken',
 # ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
+
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -100,7 +114,6 @@ WSGI_APPLICATION = 'marvel.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 
 # NOTE: Reemplazamos la configuración inicial de base de datos para trabajar con Postgres:
 # Recordemos:
@@ -162,3 +175,13 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# NOTE: Para debug
+
+# Color en los prints:
+# Modo de uso: print(VERDE+"mi texto")
+
+AMARILLO = "\033[;33m"
+CIAN = "\033[;36m"
+VERDE = "\033[;32m"
